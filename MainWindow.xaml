@@ -1,0 +1,133 @@
+﻿<Window x:Class="m4.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Учет товаров" Height="600" Width="800"
+        Background="#F0F0F0"
+        ResizeMode="CanResize">
+    <Grid Margin="10">
+        <TextBlock Text="Учет товаров в магазине" 
+                   HorizontalAlignment="Center" 
+                   VerticalAlignment="Top" 
+                   FontSize="24" 
+                   Margin="0,20,0,0" 
+                   FontWeight="Bold" 
+                   Foreground="#333"/>
+
+        <Grid Margin="0,80,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <!-- Для заголовка -->
+                <RowDefinition Height="Auto"/>
+                <!-- Для панели фильтрации -->
+                <RowDefinition Height="*"/>
+                <!-- Для списка товаров -->
+            </Grid.RowDefinitions>
+
+            <TabControl Grid.Row="0">
+                <!-- Продукты питания -->
+                <TabItem Header="Продукты питания" Background="#E0FFE0">
+                    <StackPanel>
+                        <UniformGrid Rows="5" Columns="2" Margin="10">
+                            <TextBlock Text="Название товара:" />
+                            <TextBox x:Name="FoodProductNameTextBox" />
+
+                            <TextBlock Text="Цена (BYN):" />
+                            <TextBox x:Name="FoodProductPriceTextBox" />
+
+                            <TextBlock Text="Количество:" />
+                            <TextBox x:Name="FoodProductStockTextBox" />
+
+                            <TextBlock Text="Срок годности:" />
+                            <TextBox x:Name="FoodProductExpirationTextBox" />
+                        </UniformGrid>
+                        <Button Content="Добавить" Click="AddFoodProduct_Click" Margin="10" HorizontalAlignment="Right" />
+                    </StackPanel>
+                </TabItem>
+
+                <!-- Бытовая техника -->
+                <TabItem Header="Бытовая техника" Background="#FFE0E0">
+                    <StackPanel>
+                        <UniformGrid Rows="6" Columns="2" Margin="10">
+                            <TextBlock Text="Название товара:" />
+                            <TextBox x:Name="ElectronicsProductNameTextBox" />
+
+                            <TextBlock Text="Цена (BYN):" />
+                            <TextBox x:Name="ElectronicsProductPriceTextBox" />
+
+                            <TextBlock Text="Количество:" />
+                            <TextBox x:Name="ElectronicsProductStockTextBox" />
+
+                            <TextBlock Text="Гарантия (лет):" />
+                            <TextBox x:Name="ElectronicsProductWarrantyTextBox" />
+
+                            
+                            <!-- Измените имя на PowerTextBox -->
+                        </UniformGrid>
+                        <Button Content="Добавить" Click="AddElectronicsProduct_Click" Margin="10" HorizontalAlignment="Right" />
+                    </StackPanel>
+                </TabItem>
+
+                <!-- Одежда -->
+                <TabItem Header="Одежда" Background="#E0E0FF">
+                    <StackPanel>
+                        <UniformGrid Rows="5" Columns="2" Margin="10">
+                            <TextBlock Text="Название товара:" />
+                            <TextBox x:Name="ClothingProductNameTextBox" />
+
+                            <TextBlock Text="Цена (BYN):" />
+                            <TextBox x:Name="ClothingProductPriceTextBox" />
+
+                            <TextBlock Text="Количество:" />
+                            <TextBox x:Name="ClothingProductStockTextBox" />
+
+                            <TextBlock Text="Размер:" />
+                            <ComboBox x:Name="ClothingProductSizeComboBox">
+                                <ComboBoxItem Content="S" />
+                                <ComboBoxItem Content="M" />
+                                <ComboBoxItem Content="L" />
+                                <ComboBoxItem Content="XL" />
+                                <!-- Добавьте нужные размеры -->
+                            </ComboBox>
+                        </UniformGrid>
+                        <Button Content="Добавить" Click="AddClothingProduct_Click" Margin="10" HorizontalAlignment="Right" />
+                    </StackPanel>
+                </TabItem>
+
+                <!-- Мебель -->
+                <TabItem Header="Мебель" Background="#FFFFE0">
+                    <StackPanel>
+                        <UniformGrid Rows="5" Columns="2" Margin="10">
+                            <TextBlock Text="Название товара:" />
+                            <TextBox x:Name="FurnitureProductNameTextBox" />
+
+                            <TextBlock Text="Цена (BYN):" />
+                            <TextBox x:Name="FurnitureProductPriceTextBox" />
+
+                            <TextBlock Text="Количество:" />
+                            <TextBox x:Name="FurnitureProductStockTextBox" />
+
+                            <TextBlock Text="Материал:" />
+                            <ComboBox x:Name="FurnitureProductMaterialComboBox">
+                                <ComboBoxItem Content="Дерево" />
+                                <ComboBoxItem Content="Металл" />
+                                <ComboBoxItem Content="Пластик" />
+                                <ComboBoxItem Content="Стекло" />
+                                <!-- Добавьте нужные материалы -->
+                            </ComboBox>
+                        </UniformGrid>
+                        <Button Content="Добавить" Click="AddFurnitureProduct_Click" Margin="10" HorizontalAlignment="Right" />
+                    </StackPanel>
+                </TabItem>
+            </TabControl>
+
+            <!-- Фильтрация товаров -->
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1">
+                <TextBlock Text="Фильтрация по цене (до BYN):" FontSize="16"/>
+                <TextBox x:Name="PriceFilterTextBox" Width="232" Margin="0,10,0,0" TextChanged="PriceFilterTextBox_TextChanged" Height="32"/>
+            </StackPanel>
+
+            <!-- Список добавленных товаров -->
+            <ListBox x:Name="ProductListBox" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,10,10,10" Grid.Row="2" SelectionChanged="ProductListBox_SelectionChanged" />
+        </Grid>
+    </Grid>
+</Window>
